@@ -288,3 +288,18 @@ let glideMixin = function (obj) {
 
 glideMixin(bird);
 glideMixin(boat);
+
+// Use Closure to Protect Properties from External Modification
+function Bird() {
+  // this.weight = 15;
+  let weight = 15;
+  this.getWeight = function () {
+    return weight;
+  };
+}
+
+
+
+
+}
+
