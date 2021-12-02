@@ -153,5 +153,55 @@ function Dog(name) {
 }
 
 let beagle = new Dog("Snoopy");
-Dog.prototype.isPrototypeOf(beagle);
-Object.prototype.isPrototypeOf(Dog);
+Dog.prototype.isPrototypeOf(beagle); // prototype of beagle is Dog
+Object.prototype.isPrototypeOf(Dog); // prototype of Dog is Object
+
+// Use Inheritance to avoid Repeat Code
+function Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat,
+  /*
+  eat: function () {
+    console.log("nom nom nom");
+  },
+  */
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear,
+  /*
+  eat: function () {
+    console.log("nom nom nom");
+  },
+  */
+};
+
+function Animal() {}
+
+Animal.prototype = {
+  constructor: Animal,
+  // Add eat() to the Animal supertype to avoid repeat code within Cat and Bear
+  eat: function () {
+    console.log("nom nom nom");
+  },
+};
+
+// Inherit Behaviors from a Supertype
+function Animal() {}
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function () {
+    console.log("nom nom nom");
+  },
+};
+
+let duck = Object.create(Animal.prototype);
+let beagle = Object.create(Animal.prototype);
