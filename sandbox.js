@@ -268,3 +268,23 @@ Penguin.prototype.fly = function () {
 
 let penguin = new Penguin();
 console.log(penguin.fly());
+
+// Use a Mixin to add Common Behavior between Unrelated Objects
+let bird = {
+  name: "Donald",
+  numLegs: 2,
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat",
+};
+
+let glideMixin = function (obj) {
+  obj.glide = function () {
+    console.log("I can glide");
+  };
+};
+
+glideMixin(bird);
+glideMixin(boat);
