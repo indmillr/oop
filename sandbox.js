@@ -205,3 +205,66 @@ Animal.prototype = {
 
 let duck = Object.create(Animal.prototype);
 let beagle = Object.create(Animal.prototype);
+
+// Set the Childs Prototype to an Instance of the Parent
+function Animal() {}
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function () {
+    console.log("nom nom nom");
+  },
+};
+
+function Dog() {}
+// Instances of Dog inherit from Animal
+Dog.prototype = Object.create(Animal.prototype);
+
+let beagle = new Dog();
+
+// Reset an Inherited Constructor Property
+function Animal() {}
+function Bird() {}
+function Dog() {}
+
+Bird.prototype = Object.create(Animal.prototype);
+Dog.prototype = Object.create(Animal.prototype);
+
+Bird.prototype.constructor = Bird; // Manually set constructor property
+Dog.prototype.constructor = Dog; // Manually set constructor property
+
+let duck = new Bird();
+let beagle = new Dog();
+
+// Add Methods after Inheritance
+function Animal() {}
+Animal.prototype.eat = function () {
+  console.log("nom nom nom");
+};
+
+function Dog() {}
+Dog.prototype = Object.create(Animal.prototype); // inherit from Animal
+Dog.prototype.constructor = Dog; // reset constructor
+Dog.prototype.bark = function () {
+  console.log("Woof!");
+};
+
+let beagle = new Dog();
+
+// Override Inherited Methods
+function Bird() {}
+
+Bird.prototype.fly = function () {
+  return "I am flying!";
+};
+
+function Penguin() {}
+Penguin.prototype = Object.create(Bird.prototype);
+Penguin.prototype.constructor = Penguin;
+Penguin.prototype.fly = function () {
+  // OVERRIDES the Bird.fly method
+  return "Alas, this is a flightless bird.";
+};
+
+let penguin = new Penguin();
+console.log(penguin.fly());
