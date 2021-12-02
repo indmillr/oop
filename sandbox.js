@@ -48,3 +48,31 @@ function Dog(name, color) {
   this.numLegs = 4;
 }
 let terrier = new Dog("Luna", "brown");
+
+// Verify an Object's Constructor with 'instanceof'
+function House(numBedrooms) {
+  this.numBedrooms = numBedrooms;
+}
+let myHouse = new House(5);
+myHouse instanceof House;
+
+// Understand Own Properties
+function Bird(name) {
+  this.name = name;
+  this.numLegs = 2;
+}
+let canary = new Bird("Tweety");
+let ownProps = [];
+
+for (let property in canary) {
+  if (canaray.hasOwnProperty(property)) {
+    ownProps.push(property);
+  }
+}
+
+// Use Prototype Properties to Reduce Duplicate Code
+function Dog(name) {
+  this.name = name;
+}
+Dog.prototype.numLegs = 4;
+let beagle = new Dog("Snoopy");
