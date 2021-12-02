@@ -95,3 +95,63 @@ for (let property in beagle) {
     prototypeProps.push(property);
   }
 }
+
+// Understand the Constructor Property
+function Dog(name) {
+  this.name = name;
+}
+
+function joinDogFraternity(candidate) {
+  if (candidate.constructor === Dog) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Change the Prototype to a New Object
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  numLegs: 4,
+  eat: function () {
+    console.log("Yum!");
+  },
+  describe: function () {
+    console.log("My name is " + this.name + ".");
+  },
+};
+
+// Set the Constructor Property when changing the prototype
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  constructor: Dog, // Set the Constructor so it does not get erased!!
+  numLegs: 4,
+  eat: function () {
+    console.log("nom nom nom");
+  },
+  describe: function () {
+    console.log("My name is " + this.name);
+  },
+};
+
+// Understand Where the Prototype Comes From
+function Dog(name) {
+  this.name = name;
+}
+let beagle = new Dog("Snoopy");
+Dog.prototype.isPrototypeOf(beagle);
+
+// Understand the Prototype Chain
+function Dog(name) {
+  this.name = name;
+}
+
+let beagle = new Dog("Snoopy");
+Dog.prototype.isPrototypeOf(beagle);
+Object.prototype.isPrototypeOf(Dog);
