@@ -298,8 +298,40 @@ function Bird() {
   };
 }
 
-
-
-
+// Understand the 'Immediately Invoked Function Expression' (IIFE)
+/* function makeNest() {
+  console.log("A cozy nest is ready");
 }
+makeNest(); */
+(function () {
+  console.log("A cozy nest is ready");
+})();
 
+// Use an IIFE to create a module
+/*
+let isCuteMixin = function (obj) {
+  obj.isCute = function () {
+    return true;
+  };
+};
+let singMixin = function (obj) {
+  obj.sing = function () {
+    console.log("Singing to an awesome tune");
+  };
+};
+*/
+
+let funModule = (function () {
+  return {
+    isCuteMixin: function (obj) {
+      obj.isCute = function () {
+        return true;
+      };
+    },
+    singMixin: function (obj) {
+      obj.sing = function () {
+        console.log("Singing to an awesome tune");
+      };
+    },
+  };
+})();
